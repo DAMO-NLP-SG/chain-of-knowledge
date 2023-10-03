@@ -1,8 +1,25 @@
 # KA-LLM
 
-### Stage 2: Knowledge Retrieval
+### 1. Requirements
+#### 1.1 OPENAI_API_KEY
+Create an account and get the API key for OpenAI (https://openai.com).
 
-#### 2.1 Setup Entity Linking for SPARQL
+```
+OPENAI_API_KEY=YOUR_KEY
+```
+#### 1.2 SERPAPI_KEY
+Create an account and get the API key for google retrieval (https://serpapi.com).
+
+```
+SERPAPI_KEY=YOUR_KEY
+```
+
+#### 1.3 Install requirements
+```
+conda env create -f requirements.yaml
+```
+
+#### 1.4 Setup Entity Linking for SPARQL
 
 For linking text to KG facts using pretrained models for now.
 
@@ -22,9 +39,26 @@ Preprocess entity information:
 python linking.py process_titles
 ```
 
-#### 2.2 SERPAPI_KEY
-Create an account and get the API key for google retrieval (https://serpapi.com).
-
+### 2. Instruction-tuning of adaptive query generator (AQG)
 ```
-SERPAPI_KEY=YOUR_KEY
+python sft_trainer.py \
+    --model_name $BASE_MODEL \
+    --dataset_name $DATASET_NAME \
+    --load_in_8bit \
+    --use_peft \
+    --batch_size 32 \
+    --gradient_accumulation_steps 2 \
+    --output_dir $OUTPUT_DIR \
+    --num_train_epochs 3 \
+    --push_to_hub True\
+    --hub_model_id $HUB_MODEL_ID \
+```
+
+### 3. Inference chain-of-knowledge (CoK)
+```
+python run.py \
+    --model gpt-3.5-turbo-0613 \
+    --dataset $DATASET_NAME \
+    --output $OUTPUT_DIR \
+    --step True \
 ```
