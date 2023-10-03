@@ -1,4 +1,4 @@
-# KA-LLM
+# Chain-of-Knowledge
 
 ### 1. Requirements
 #### 1.1 OPENAI_API_KEY
