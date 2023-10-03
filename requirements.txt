@@ -1,0 +1,25 @@
+# conda create -n ka-llm python=3.10 -y
+# conda activate ka-llm
+# pip install -r requirements.txt
+# python -m spacy download en_core_web_trf
+bitsandbytes==0.41.1
+datasets==2.14.5
+faiss-cpu==1.7.2
+fire==0.5.0
+google-search-results==2.4.2
+marisa-trie==1.0.0
+nltk==3.8.1
+numpy==1.25.2
+openai==0.27.4
+pandas==2.1.0
+peft==0.5.0
+pydantic==1.10.12
+sacrebleu==2.3.1
+scikit-learn==1.3.0
+scipy==1.11.2
+spacy==3.6.1
+spacy-transformers==1.2.5
+sparqlwrapper==2.0.0
+torch==2.0.1
+tqdm==4.65.0
+transformers==4.30.2
