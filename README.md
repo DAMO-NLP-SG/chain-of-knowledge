@@ -62,3 +62,15 @@ python run.py \
     --output $OUTPUT_DIR \
     --step True \
 ```
+
+### Citation
+```
+@inproceedings{
+    li2024cok,
+    title={Chain-of-Knowledge: Grounding Large Language Models via Dynamic Knowledge Adapting over Heterogeneous Sources},
+    author={Xingxuan Li and Ruochen Zhao and Yew Ken Chia and Bosheng Ding and Shafiq Joty and Soujanya Poria and Lidong Bing},
+    booktitle={International Conference on Learning Representations},
+    year={2024},
+    url={https://openreview.net/forum?id=cPgh4gWZlz}
+}
+```
