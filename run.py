@@ -19,6 +19,15 @@ def s1_reasoning_preparation(dataset, data_point, model, threshold):
     print("****************** Start stage 1: reasoning preparation ...")
     question = dataset.get_question(data_point)
     print("****** Question:", question)
+
+    ### Domain selection
+    domain_selection_prompt = domain_selection_demonstration + "Q: " + question.strip() + "\nRelevant domains: "
+    domain_selection_response = call_openai_api(model, domain_selection_prompt, max_tokens=256, temperature=0)
+    
+    if domain_selection_response is not None:
+        domain_selection_text_response = domain_selection_response[1].strip()
+        print("****** Relevant domains:", domain_selection_text_response)
+        data_point["s1_domains"] = [x.strip() for x in domain_selection_text_response.split(",")]
     
     ### CoT generation
     cot_prompt = dataset.get_s1_prompt(question)
